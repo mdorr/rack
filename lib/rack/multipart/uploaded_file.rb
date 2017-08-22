@@ -13,7 +13,7 @@ module Rack
         @original_filename = ::File.basename(path)
         @tempfile = Tempfile.new([@original_filename, ::File.extname(path)], encoding: Encoding::BINARY)
         @tempfile.binmode if binary
-        FileUtils.copy_file(path, @tempfile.path)
+        FileUtils.mv(path, @tempfile.path)
       end
 
       def path
